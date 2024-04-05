@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     safe_area_view: {
         flex: 1,
         backgroundColor: '#f0ffff',
+        marginTop: 40,
     },
     scrollView: {
         backgroundColor: '#f0ffff',
@@ -29,16 +30,20 @@ const styles = StyleSheet.create({
         height: 40,
         backgroundColor: 'wheat',
         marginTop: 25,
-        marginBottom: 25,
         borderRadius: 20,
         paddingRight: 10,
         paddingLeft: 10,
+    },
+    input_error: {
+        width: 300,
+        color: 'red',
     },
     switch_container: {
         width: windowWidth-70,
         flexDirection: 'row',
         justifyContent: 'left',
         alignItems: 'center',
+        marginTop: 15,
     },
     switch: {
         width: 10,
@@ -63,7 +68,14 @@ const styles = StyleSheet.create({
     },
     login_text: {
         fontSize: 25,
-    }
+    },
+    register_login: {
+        width: windowWidth-70,
+        textAlign: 'left',
+        color: 'blue',
+        marginTop: 8,
+        textDecorationLine: 'underline',
+    },
 });
 
  

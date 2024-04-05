@@ -111,6 +111,9 @@ function Login(props){
     const [passWord, setPassWord] = useState('密码');
     const [userAgree, setUserAgree] = useState(false);
     const [agreeTrue, setAgreeTrue] = useState('');
+    const [inputError, setInputError] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const {navigation}=props;
     // 判断用户名与密码
     const checkLogin = () => {
@@ -122,6 +125,7 @@ function Login(props){
         }else{
             for(var i = 0; i < users.length; i++) {
                 if(users[i].username===userName && users[i].password===passWord){
+                    setInputError('');
                     Alert.alert('用户名和密码正确！');
                     checkUser = true;
                     navigation.navigate('首页');
@@ -129,10 +133,35 @@ function Login(props){
                 };
               };
             if(checkUser === false){
-                Alert.alert('用户名或密码错误！');
+                setInputError('❌请填写完整的用户名或密码！');
             };
         };
     };
+    // 从数据库中判断用户名与密码
+    // const checkFromDatabase = async () => {
+    //     const sendMessage = {
+    //         method: 'GET',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //         },
+    //     }
+    //     try {
+    //         const users = fetch('http://127.0.0.1/api/users', sendMessage)
+    //                         .then((response) => response.json())
+    //                         .then((responseJson) => {console.log(responseJson);console.log('response')});
+    //         if (!users){Alert.alert('用户名或密码不正确')}
+    //         else{Alert.alert('response1')};
+    //         console.log(users)
+    //       }
+    //       catch(err) {
+    //         setError(true);
+    //         Alert.alert(err)
+    //       }
+    //       finally {
+    //         setLoading(false);
+    //       }
+    // };
     // 勾选用户协议
     const press = () => {
         setUserAgree(!userAgree);
@@ -149,6 +178,7 @@ function Login(props){
                     <Text style={styles.title}>鸭先知 & 明知山</Text>
                     <TextInput style={styles.user} value={userName} onChangeText={text=>setUserName(text)} />
                     <TextInput style={styles.user} value={passWord} onChangeText={text=>setPassWord(text)} />
+                    <Text style={styles.input_error}>{inputError}</Text>
                     <Pressable style={styles.switch_container} onPress={press}>
                         <Text style={styles.switch} >{agreeTrue}</Text>
                         <Text style={styles.switch_text}>同意用户协议</Text>
@@ -159,6 +189,7 @@ function Login(props){
                     <Pressable onPress={checkLogin} style={styles.login_button}>
                         <Text style={styles.login_text}>登录</Text>
                     </Pressable>
+                    <Text style={styles.register_login} onPress={()=>{navigation.navigate('注册');}}>注册新账号</Text>
                 </View>
         </SafeAreaView>
         

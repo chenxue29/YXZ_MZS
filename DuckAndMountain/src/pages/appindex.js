@@ -16,6 +16,22 @@ import styles from '../css/appindex';
 import SearchHeader from '../components/search_header';
 import FootBar from '../components/foot_bar';
 
+const Item = ({title, userName, date}) => {
+    return(
+            <Pressable style={styles.item} onPress={()=>{Alert.alert('跳转到展示页面', title)}}>
+                <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.image} />
+                <Text style={styles.title} numberOfLines={1} ellipsizeMode={'tail'}>{title}</Text>
+                <View style={styles.user}>
+                    <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.user_img} />
+                    <Text style={styles.user_name} numberOfLines={1} ellipsizeMode={'tail'}>{userName}</Text>
+                </View>
+                <View>
+                    <Text style={styles.date}>{date}</Text>
+                </View>
+            </Pressable>
+    )
+};
+
 function AppIndex(props){
     const {navigation}=props;
     const image = [
@@ -45,9 +61,33 @@ function AppIndex(props){
         {id: 24, url: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg', height: 220},
         {id: 25, url: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg', height: 220},
     ];
+    const travels = [
+        {
+            id: 1,
+            title: '2024.3.31日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '周佳佳',
+            date: '20240331'
+        },
+        {
+            id: 2,
+            title: '2024.4.5日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '陈雪',
+            date: '20240331'
+        }
+    ]
     const waterfallItem = ({ item }) => {
-        return (
-            <Image source={{ uri: item.url }} style={[styles.image, {height: item.height}]} />
+        return (  
+            <View style={styles.item}>
+                <Image source={{ uri: item.url }} style={[styles.image, {height: item.height}]} />
+            </View>
         );
     };
 
@@ -64,12 +104,14 @@ function AppIndex(props){
                 />
                 </View>
             </ScrollView> */}
+            {/* 使用flatlist实现瀑布流： */}
             <FlatList
-                    data={image}
+                    data={travels}
                     initialNumToRender={4}
-                    renderItem={waterfallItem}
+                    renderItem={({ item }) => <Item {...item} />}
                     keyExtractor={item => item.id.toString()}
                     numColumns={2}
+                    style={styles.body}
                 />
             <FootBar />
         </SafeAreaView>
