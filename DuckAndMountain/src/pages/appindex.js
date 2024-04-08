@@ -10,30 +10,84 @@ import {
     Pressable,
     Alert,
     FlatList,
-    Image
+    Image,
+    SectionList,
 } from 'react-native';
+import { Space } from 'antd-mobile'
 import styles from '../css/appindex';
 import SearchHeader from '../components/search_header';
 import FootBar from '../components/foot_bar';
 
-const Item = ({title, userName, date}) => {
+const Item = ({title, userName, date, height}) => {
     return(
-            <Pressable style={styles.item} onPress={()=>{Alert.alert('跳转到展示页面', title)}}>
-                <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.image} />
-                <Text style={styles.title} numberOfLines={1} ellipsizeMode={'tail'}>{title}</Text>
-                <View style={styles.user}>
-                    <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.user_img} />
-                    <Text style={styles.user_name} numberOfLines={1} ellipsizeMode={'tail'}>{userName}</Text>
-                </View>
-                <View>
-                    <Text style={styles.date}>{date}</Text>
-                </View>
-            </Pressable>
+            <View style={styles.section}>
+                {/* {data.map(element => {
+                    return(
+                        <Pressable style={styles.item} onPress={()=>{Alert.alert('跳转到展示页面', element.title)}}>
+                            <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.image} />
+                            <Text style={styles.title} numberOfLines={1} ellipsizeMode={'tail'}>{element.title}</Text>
+                            <View style={styles.user}>
+                                <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.user_img} />
+                                <Text style={styles.user_name} numberOfLines={1} ellipsizeMode={'tail'}>{element.userName}</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.date}>{element.date}</Text>
+                            </View>
+                        </Pressable>
+                        )
+                })} */}
+                {/* <Pressable style={styles.item} onPress={()=>{Alert.alert('跳转到展示页面', title)}}>
+                    <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.image} />
+                    <Text style={styles.title} numberOfLines={1} ellipsizeMode={'tail'}>{title}</Text>
+                    <View style={styles.user}>
+                        <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.user_img} />
+                        <Text style={styles.user_name} numberOfLines={1} ellipsizeMode={'tail'}>{userName}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.date}>{date}</Text>
+                    </View>
+                </Pressable> */}
+                <Pressable style={styles.item} onPress={()=>{Alert.alert('跳转到展示页面', title)}}>
+                    <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={[styles.image, {height: height}]} />
+                    <Text style={styles.title} numberOfLines={1} ellipsizeMode={'tail'}>{title}</Text>
+                    <View style={styles.user}>
+                        <Image source={{ uri: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg' }} style={styles.user_img} />
+                        <Text style={styles.user_name} numberOfLines={1} ellipsizeMode={'tail'}>{userName}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.date}>{date}</Text>
+                    </View>
+                </Pressable>
+            </View>
     )
 };
 
 function AppIndex(props){
     const {navigation}=props;
+    const section = [
+        {title: 'waterfall', data: [
+            {
+                id: 1,
+                title: '2024.3.31日的一天',
+                content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+                state: 1,
+                open: 0,
+                delete: 0,
+                userName: '周佳佳',
+                date: '20240331'
+            },
+            {
+                id: 2,
+                title: '2024.4.5日的一天',
+                content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+                state: 1,
+                open: 0,
+                delete: 0,
+                userName: '陈雪',
+                date: '20240331'
+            },
+        ],},
+    ];
     const image = [
         {id: 1, url: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg', height: 150},
         {id: 2, url: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg', height: 180},
@@ -61,7 +115,7 @@ function AppIndex(props){
         {id: 24, url: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg', height: 220},
         {id: 25, url: 'https://p1.ssl.qhmsg.com/t01d40f0b5316c5f58d.jpg', height: 220},
     ];
-    const travels = [
+    const travelsLeft = [
         {
             id: 1,
             title: '2024.3.31日的一天',
@@ -70,7 +124,8 @@ function AppIndex(props){
             open: 0,
             delete: 0,
             userName: '周佳佳',
-            date: '20240331'
+            date: '20240331',
+            height: 300,
         },
         {
             id: 2,
@@ -80,9 +135,82 @@ function AppIndex(props){
             open: 0,
             delete: 0,
             userName: '陈雪',
-            date: '20240331'
-        }
-    ]
+            date: '20240331',
+            height: 200,
+        },
+        {
+            id: 3,
+            title: '2024.3.31日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '周佳佳',
+            date: '20240331',
+            height: 250,
+        },
+        {
+            id: 4,
+            title: '2024.4.5日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '陈雪',
+            date: '20240331',
+            height: 100,
+        },
+    ];
+    const travelsRight = [
+        {
+            id: 1,
+            title: '2024.3.31日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '周佳佳',
+            date: '20240331',
+            height: 200,
+        },
+        {
+            id: 2,
+            title: '2024.4.5日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '陈雪',
+            date: '20240331',
+            height: 200,
+        },
+        {
+            id: 3,
+            title: '2024.3.31日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '周佳佳',
+            date: '20240331',
+            height: 200,
+        },
+        {
+            id: 4,
+            title: '2024.4.5日的一天',
+            content: '今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！今天什么都没干，度过了美妙的一天！',
+            state: 1,
+            open: 0,
+            delete: 0,
+            userName: '陈雪',
+            date: '20240331',
+            height: 200,
+        },
+    ];
+    const travels = [
+        {id: 1, data: travelsLeft},
+        // {id: 2, data: travelsRight},
+    ];
     const waterfallItem = ({ item }) => {
         return (  
             <View style={styles.item}>
@@ -105,14 +233,80 @@ function AppIndex(props){
                 </View>
             </ScrollView> */}
             {/* 使用flatlist实现瀑布流： */}
-            <FlatList
+            {/* <SectionList
+             /> */}
+            {/* <FlatList
                     data={travels}
                     initialNumToRender={4}
                     renderItem={({ item }) => <Item {...item} />}
                     keyExtractor={item => item.id.toString()}
                     numColumns={2}
                     style={styles.body}
-                />
+                /> */}
+                {/* <SectionList
+                sections={section}
+                keyExtractor={(item, index) => item + index}
+                style={{display: 'flex', flexDirection: 'row'}}
+                renderItem={({item}) => {
+                    return(
+                        <FlatList
+                        data={travels}
+                        initialNumToRender={4}
+                        renderItem={({ item }) => <Item {...item} />}
+                        keyExtractor={item => item.id.toString()}
+                        numColumns={1}
+                        style={styles.body}
+                        />
+                    )
+                }}
+                 /> */}
+                 {/* <View style={styles.section}>
+                    <FlatList
+                    data={travels}
+                    initialNumToRender={4}
+                    renderItem={({ item }) => <Item {...item} />}
+                    keyExtractor={item => item.id.toString()}
+                    numColumns={1}
+                    style={styles.body}
+                    />
+                    <FlatList
+                    data={travels}
+                    initialNumToRender={4}
+                    renderItem={({ item }) => <Item {...item} />}
+                    keyExtractor={item => item.id.toString()}
+                    numColumns={1}
+                    style={styles.body}
+                    />
+                 </View> */}
+                 {/* <FlatList
+                    data={travels}
+                    initialNumToRender={4}
+                    renderItem={({ item }) => <Item {...item} />}
+                    keyExtractor={item => item.id.toString()}
+                    numColumns={1}
+                    style={styles.body}
+                    /> */}
+                <ScrollView>
+                    <View style={styles.waterfall}>
+                        <View style={styles.waterfall_item}>
+                            {travelsLeft.map(element => {
+                                return(
+                                    <Item {...element} />
+                                    )
+                            })}
+                        </View>
+                        <View style={styles.waterfall_item}>
+                            {travelsRight.map(element => {
+                                    return(
+                                        <Item {...element} />
+                                        )
+                                })}
+                        </View>
+                    </View>
+
+                </ScrollView>
+
+                
             <FootBar />
         </SafeAreaView>
         

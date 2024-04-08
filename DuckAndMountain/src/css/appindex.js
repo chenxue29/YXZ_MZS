@@ -15,10 +15,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    section: {
+        // backgroundColor: 'red',
+        // width: (windowWidth - 20) / 2,
+        // display: 'flex',
+        // flexDirection: 'row',
+        // marginBottom: 100,
+    },
     body: {
-        backgroundColor: 'red',
         marginLeft: 5,
         marginRight: 5,
+        // width: (windowWidth - 20) / 2,
     },
     item: {
         width: (windowWidth - 32) / 2,
@@ -61,6 +68,14 @@ const styles = StyleSheet.create({
         marginLeft: 8,
         marginRight: 8,
         color: 'gray',
+    },
+    waterfall: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    waterfall_item: {
+        marginLeft: 10,
+        marginRight: 10,
     },
 });
 
