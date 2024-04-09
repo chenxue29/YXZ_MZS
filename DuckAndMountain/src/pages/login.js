@@ -67,6 +67,9 @@ import {
 } from 'react-native';
 import styles from '../css/login';
 
+import {connect} from 'react-redux';
+import userLogin from '../store/actions/action';
+
 const users = [
     {
         id: '00000',
@@ -114,7 +117,7 @@ function Login(props){
     const [inputError, setInputError] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const {navigation}=props;
+    const {navigation, login, name, UserLogin}=props;
     // 判断用户名与密码
     const checkLogin = () => {
         var checkUser = false;
@@ -126,14 +129,15 @@ function Login(props){
             for(var i = 0; i < users.length; i++) {
                 if(users[i].username===userName && users[i].password===passWord){
                     setInputError('');
-                    Alert.alert('用户名和密码正确！');
+                    UserLogin({login: 'login', name: userName})
+                    Alert.alert(`用户名${name}`);
                     checkUser = true;
                     navigation.navigate('首页');
                     break;
                 };
               };
             if(checkUser === false){
-                setInputError('❌请填写完整的用户名或密码！');
+                setInputError('用户名或密码有误');
             };
         };
     };
@@ -196,4 +200,20 @@ function Login(props){
     );
 };
 
-export default Login;
+// 将状态存入props中
+const mapStateToProps = (state) => {
+    return{
+      login: state.login,
+      name: state.name,
+    }
+  };
+  // 将dispatch存入props中
+  const mapDispatchToProps = (dispatch) => {
+    return{
+        UserLogin: (manager) => dispatch(userLogin(
+          {login: manager.login, name: manager.name}
+        ))
+    }
+  };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

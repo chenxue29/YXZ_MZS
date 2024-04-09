@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         width: (windowWidth - 32) / 2,
         backgroundColor: 'white',
         borderRadius: 8,
+        marginBottom: 5,
     },
     image: {
         height: 200,
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     waterfall: {
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: '#e4f3e9',
     },
     waterfall_item: {
         marginLeft: 10,

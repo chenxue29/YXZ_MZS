@@ -6,18 +6,26 @@ import Login from './src/pages/login';
 import AppIndex from './src/pages/appindex';
 import Register from './src/pages/register';
 
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducer from './src/store/reducers/reducer';
+
 const Stack = createStackNavigator();
+const store = createStore(reducer);
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
         <Stack.Screen name='首页' component={AppIndex} options={{ headerLeft: null, headerShown: false }}/>
-        <Stack.Screen name='登录' component={Login} options={{ headerLeft: null, headerShown: false }}/>
-        <Stack.Screen name='注册' component={Register} options={{ headerLeft: null, headerShown: false }}/>
-        
-      </Stack.Navigator>
-  </NavigationContainer>
+          <Stack.Screen name='登录' component={Login} options={{ headerLeft: null, headerShown: false }}/>
+          <Stack.Screen name='注册' component={Register} options={{ headerLeft: null, headerShown: false }}/>
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+
   );
 }
 

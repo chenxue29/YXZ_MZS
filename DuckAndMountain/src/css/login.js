@@ -7,7 +7,7 @@ const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
     safe_area_view: {
         flex: 1,
-        backgroundColor: '#f0ffff',
+        backgroundColor: '#e4f3e9',
         marginTop: 40,
     },
     scrollView: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     user: {
         width: 300,
         height: 40,
-        backgroundColor: 'wheat',
+        backgroundColor: '#b3ecbc',
         marginTop: 25,
         borderRadius: 20,
         paddingRight: 10,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'red',
+        backgroundColor: '#7fc199',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 50,

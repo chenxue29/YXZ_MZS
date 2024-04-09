@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingLeft: 50,
         paddingRight: 50,
-        backgroundColor: 'white',
+        backgroundColor: '#b3ecbc',
     },
     foot_index: {
         fontSize: 20,

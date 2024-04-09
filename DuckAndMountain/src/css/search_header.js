@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingTop: 50,
         paddingBottom: 10,
-        backgroundColor: '#f0ffff',
+        backgroundColor: '#b3ecbc',
     },
     search_input: {
         width: 270,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'green',
+        backgroundColor: '#7fc199',
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 10,

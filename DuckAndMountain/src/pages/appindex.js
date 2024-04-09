@@ -13,10 +13,12 @@ import {
     Image,
     SectionList,
 } from 'react-native';
-import { Space } from 'antd-mobile'
 import styles from '../css/appindex';
 import SearchHeader from '../components/search_header';
 import FootBar from '../components/foot_bar';
+
+import {connect} from 'react-redux';
+import userLogin from '../store/actions/action';
 
 const Item = ({title, userName, date, height}) => {
     return(
@@ -63,7 +65,12 @@ const Item = ({title, userName, date, height}) => {
 };
 
 function AppIndex(props){
-    const {navigation}=props;
+    const {navigation, login, name, UserLogin}=props;
+    const navi = {
+        navi: navigation.navigate,
+        login: login,
+        name: name,
+    };
     const section = [
         {title: 'waterfall', data: [
             {
@@ -219,6 +226,7 @@ function AppIndex(props){
         );
     };
 
+
     return (
         <SafeAreaView style={styles.safe_area_view}>
             <SearchHeader />
@@ -286,6 +294,8 @@ function AppIndex(props){
                     numColumns={1}
                     style={styles.body}
                     /> */}
+
+
                 <ScrollView>
                     <View style={styles.waterfall}>
                         <View style={styles.waterfall_item}>
@@ -303,14 +313,34 @@ function AppIndex(props){
                                 })}
                         </View>
                     </View>
-
                 </ScrollView>
+                {/* <Pressable onPress={()=>{navigation.navigate('登录');}}>
+                    <Text>跳转</Text>
+                </Pressable> */}
+                
 
                 
-            <FootBar />
+            <FootBar {...navi}/>
         </SafeAreaView>
         
     );
 };
 
-export default AppIndex;
+// 将状态存入props中
+const mapStateToProps = (state) => {
+    return{
+      login: state.login,
+      name: state.name,
+    }
+  };
+  // 将dispatch存入props中
+  const mapDispatchToProps = (dispatch) => {
+    return{
+        UserLogin: (manager) => dispatch(userLogin(
+          {login: manager.login, name: manager.name}
+        ))
+    }
+  };
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppIndex);
