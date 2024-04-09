@@ -70,6 +70,8 @@ import styles from '../css/login';
 import {connect} from 'react-redux';
 import userLogin from '../store/actions/action';
 
+const url = '210.51.42.188';
+
 const users = [
     {
         id: '00000',
@@ -140,7 +142,32 @@ function Login(props){
                 setInputError('用户名或密码有误');
             };
         };
+    //     const requestData = {
+    //         username: 'userName',
+    //         password: 'passWord',
+    //     };
+    //     //解决同源策略限制:本机IP
+    //     fetch(`http://${url}:3000/login`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(requestData),
+    //     })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //         // 处理响应数据
+    //         console.log(data); // 假设返回的数据是一个 JSON 对象
+    //         Alert.alert(data);
+    //         // navigation.navigate('Mine')
+    //     })
+    //     .catch((error) => {
+    //         // 处理请求错误
+    //         console.error('Error:', error);
+    //     });
+    //     Alert.alert('press');
     };
+
     // 从数据库中判断用户名与密码
     // const checkFromDatabase = async () => {
     //     const sendMessage = {

@@ -1,4 +1,4 @@
-import React,{ Component, useState } from 'react';
+import React,{ Component, useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -225,7 +225,6 @@ function AppIndex(props){
             </View>
         );
     };
-
 
     return (
         <SafeAreaView style={styles.safe_area_view}>
