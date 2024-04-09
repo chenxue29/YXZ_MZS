@@ -1,4 +1,4 @@
-import React,{ Component, useState } from 'react';
+import React,{ Component, useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -18,16 +18,21 @@ import {connect} from 'react-redux';
 import userLogin from '../store/actions/action';
 
 function FootBar(props){
+    const [count, setCount] = useState(0);
     const clickMine = () => {
         if(props.login === 'offlogin'){
             props.navi('登录');
         }else{
             Alert.alert(`用户${props.name}`);
         }
+    };
+    const clickIndex = () => {
+        setCount(count+1);
+        Alert.alert(`${count}`);
     }
     return (
-        <View style={styles.foot_container}>
-            <Pressable onPress={()=>{Alert.alert('刷新该页面')}}>
+        <View style={styles.foot_container} key={count}>
+            <Pressable onPress={clickIndex}>
                 <Text style={styles.foot_index}>首页</Text>
             </Pressable>
             <Pressable onPress={()=>{Alert.alert('跳转到编辑页面')}}>
